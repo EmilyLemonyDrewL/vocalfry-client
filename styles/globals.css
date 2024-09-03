@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&family=Yeseva+One&display=swap');
 
 html,
 body {
@@ -18,5 +19,56 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: #9084bf;
+  color: #ffffff;
+  font-family: "Francois One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.yellow-text {
+  color: #FFCC00;
+}
+
+.login-btn {
+  background-color: #412779;
+  border: inset;
+  color: #FFCC00;
+  height: 60px;
+  width: 70%;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.login-btn:hover {
+  background-color: #FFCC00;
+  color: #412779;
+  border: inset;
+}
+
+.logout-nav-btn {
+  background-color: #412779;
+  border: inset;
+  color: #FFCC00;
+  margin-left: 20px;
+}
+
+.logout-nav-btn:hover {
+  background-color: #FFCC00;
+  border: inset;
+  color: #412779;
+}
+
+.navbar {
+  background-color: #685e8f;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.nav-link {
+  font-size: 24px;
+  color: #ffffff;
+  margin-left: 10px;
 }
