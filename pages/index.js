@@ -1,25 +1,95 @@
-import { Button } from 'react-bootstrap';
+import React from 'react';
+import { Button, Image } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
 
 function Home() {
-  const { user } = useAuth();
+  const router = useRouter();
+  const navigateTo = (path) => {
+    router.push(path);
+  };
+
+  const buttonStyle = {
+    backgroundColor: '#412779',
+    border: 'inset',
+    color: '#FFCC00',
+    height: '60px',
+    width: '70%',
+    fontSize: '30px',
+  };
+
+  const signOutBtn = {
+    backgroundColor: '#FFCC00',
+    border: 'inset',
+    color: '#412779',
+    height: '60px',
+    width: '70%',
+    fontSize: '30px',
+  };
 
   return (
     <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
+      className="home-btns"
       style={{
         height: '90vh',
         padding: '30px',
         maxWidth: '400px',
         margin: '0 auto',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        fontSize: '22px',
+        marginTop: '50px',
       }}
     >
-      <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
+      <div style={{ position: 'relative', marginBottom: '20px' }}>
+        <Image
+          src="/LargeVocalFryLogo.png"
+          alt="Vocal Fry Logo"
+          style={{
+            height: '220px',
+            display: 'block',
+            margin: '0 auto',
+          }}
+        />
+      </div>
+      <div className="w-100">
+        <Button
+          className="d-block w-100 mb-3"
+          onClick={() => navigateTo('/Profile/MyProfile')}
+          style={buttonStyle}
+        >
+          My Profile
+        </Button>
+        <Button
+          className="d-block w-100 mb-3"
+          onClick={() => navigateTo('/Category/Categories')}
+          style={buttonStyle}
+        >
+          Categories
+        </Button>
+        <Button
+          className="d-block w-100 mb-3"
+          onClick={() => navigateTo('/Jobs/JobListings')}
+          style={buttonStyle}
+        >
+          Job Listings
+        </Button>
+        <Button
+          className="d-block w-100 mb-3"
+          onClick={() => navigateTo('/Jobs/MyJobs')}
+          style={buttonStyle}
+        >
+          My Job Listings
+        </Button>
+        <Button
+          className="d-block w-100 mb-3"
+          onClick={signOut}
+          style={signOutBtn}
+        >
+          Sign Out
+        </Button>
+      </div>
     </div>
   );
 }

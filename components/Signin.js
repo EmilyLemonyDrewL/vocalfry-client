@@ -1,23 +1,27 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 import { signIn } from '../utils/auth';
 
 function Signin() {
   return (
     <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
+      className="text-center d-flex flex-column justify-content-center align-items-center"
       style={{
         height: '90vh',
         padding: '30px',
-        maxWidth: '400px',
+        maxWidth: '500px',
         margin: '0 auto',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
-      </Button>
+      <h1>Please</h1>
+      <Button className="login-btn" onClick={signIn}>Sign in with Google</Button>
+      <h4>in order to use</h4>
+      <Image
+        src="/LargeVocalFryLogo.png"
+        style={{ width: '260px' }}
+        className="mx-auto"
+      />
     </div>
   );
 }
