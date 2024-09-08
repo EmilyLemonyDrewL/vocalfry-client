@@ -72,3 +72,81 @@ body {
   color: #ffffff;
   margin-left: 10px;
 }
+
+#category-card {
+  height: 156px;
+  width: 300px;
+  background-color: #412779;
+  color: #FFCC00;
+  font-size: 24px;
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#job-card {
+  width: 400px;
+  background-color: #412779;
+  color: #FFCC00;
+  font-size: 24px;
+  padding-left: 10px;
+  display: flex;
+  margin: 18px;
+}
+
+.job-location {
+  color: #ffffff;
+}
+
+.job-deets {
+  background-color: #412779;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.job-title {
+  color: #FFCC00;
+}
+
+.company-link {
+  font-size: 18px;
+}
+
+.no-jobs {
+  color: #FFCC00;
+}
+
+.form-notes {
+  color:#FFCC00;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.job-card-btn {
+  background-color: #FFCC00;
+  color: #412779;
+  margin-right: 18px;
+}
+
+.job-card-btn:hover {
+  background-color: #412779;
+  color: #FFCC00;
+  margin-right: 18px;
+}
+
+.add-job-btn {
+  background-color: #412779;
+  color: #FFCC00;
+}
+
+.add-job-btn:hover {
+  background-color: #FFCC00;
+  color: #412779;
+}
