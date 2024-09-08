@@ -18,6 +18,7 @@ const MyJobsPage = () => {
 
   useEffect(() => {
     showJobs();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const handleAddJob = () => {
