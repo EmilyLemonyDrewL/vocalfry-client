@@ -150,3 +150,19 @@ body {
   background-color: #FFCC00;
   color: #412779;
 }
+
+#full-profile-card {
+  background-color: #412779;
+  color: #ffffff;
+  padding-left: 8px;
+  padding-top: 8px;
+}
+
+.pro-name {
+  color: #FFCC00;
+  font-size: 28px;
+}
+
+.pro-stuff {
+  font-size: 22px;
+}
