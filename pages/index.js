@@ -2,9 +2,12 @@ import React from 'react';
 import { Button, Image } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import { signOut } from '../utils/auth';
+import { useAuth } from '../utils/context/authContext';
 
 function Home() {
   const router = useRouter();
+  const { user } = useAuth();
+  const ProfileId = user?.id;
   const navigateTo = (path) => {
     router.push(path);
   };
@@ -54,13 +57,15 @@ function Home() {
         />
       </div>
       <div className="w-100">
-        <Button
-          className="d-block w-100 mb-3"
-          onClick={() => navigateTo('/Profile/MyProfile')}
-          style={buttonStyle}
-        >
-          My Profile
-        </Button>
+        {user.user_type === false && (
+          <Button
+            className="d-block w-100 mb-3"
+            onClick={() => navigateTo(`/Profile/${ProfileId}`)}
+            style={buttonStyle}
+          >
+            My Profile
+          </Button>
+        )}
         <Button
           className="d-block w-100 mb-3"
           onClick={() => navigateTo('/Category/Categories')}
@@ -75,13 +80,15 @@ function Home() {
         >
           Job Listings
         </Button>
-        <Button
-          className="d-block w-100 mb-3"
-          onClick={() => navigateTo('/Jobs/MyJobs')}
-          style={buttonStyle}
-        >
-          My Job Listings
-        </Button>
+        {user.user_type === true && (
+          <Button
+            className="d-block w-100 mb-3"
+            onClick={() => navigateTo('/Jobs/MyJobs')}
+            style={buttonStyle}
+          >
+            My Job Listings
+          </Button>
+        )}
         <Button
           className="d-block w-100 mb-3"
           onClick={signOut}
