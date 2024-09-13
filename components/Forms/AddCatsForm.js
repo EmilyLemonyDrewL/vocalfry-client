@@ -11,30 +11,36 @@ const AddCatsToProfileForm = ({ profileId, onUpdate }) => {
   const [profileCategories, setProfileCategories] = useState([]);
 
   useEffect(() => {
-    getCategories().then(setCategories);
+    // Fetch categories and profile categories on component mount
+    getCategories()
+      .then(setCategories)
+      .catch((error) => console.error('Error fetching categories:', error));
 
-    getProfileCategories(profileId).then(setProfileCategories);
+    getProfileCategories(profileId)
+      .then(setProfileCategories)
+      .catch((error) => console.error('Error fetching profile categories:', error));
   }, [profileId]);
 
   const isCategorySelected = (categoryId) => profileCategories.some((pc) => pc.category.id === categoryId);
 
   const handleCatChange = (categoryId) => {
-    if (isCategorySelected(categoryId)) {
+    const isSelected = isCategorySelected(categoryId);
+    if (isSelected) {
       const profileCat = profileCategories.find((pc) => pc.category.id === categoryId);
-      deleteProfileCat(profileCat.id).then(() => {
-        setProfileCategories((prev) => prev.filter((pc) => pc.id !== profileCat.id));
-        onUpdate();
-      });
+      deleteProfileCat(profileCat.id) // Make sure profileCat.id is correct
+        .then(() => {
+          setProfileCategories((prev) => prev.filter((pc) => pc.id !== profileCat.id));
+          onUpdate(); // Call the onUpdate callback to refresh the profile categories
+        })
+        .catch((error) => console.error('Error deleting category:', error));
     } else {
-      createProfileCat(profileId, categoryId).then((newProfileCategory) => {
-        setProfileCategories((prev) => [...prev, newProfileCategory]);
-        onUpdate();
-      });
+      createProfileCat(profileId, categoryId)
+        .then((newProfileCategory) => {
+          setProfileCategories((prev) => [...prev, newProfileCategory]);
+          onUpdate(); // Call the onUpdate callback to refresh the profile categories
+        })
+        .catch((error) => console.error('Error creating category:', error));
     }
-  };
-
-  const handleSubmit = () => {
-    alert('Categories added successfully!');
   };
 
   return (
@@ -52,7 +58,8 @@ const AddCatsToProfileForm = ({ profileId, onUpdate }) => {
           />
         ))}
       </Form>
-      <Button className="add-job-btn" onClick={handleSubmit}>
+      {/* Remove handleSubmit if not needed */}
+      <Button className="add-job-btn" onClick={() => alert('Categories updated successfully!')}>
         Save
       </Button>
     </div>

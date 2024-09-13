@@ -19,13 +19,11 @@ const MyProfilePage = () => {
       getProfileByUser(user.uid).then((data) => {
         const profileData = data[0] || null;
         setProfile(profileData);
+        setLoading(false);
 
         if (profileData?.id) {
-          getProfileCategories(profileData.id).then((categories) => {
-            setProfileCategories(categories);
-          });
+          getProfileCategories(profileData.id).then(setProfileCategories);
         }
-        setLoading(false);
       });
     }
   };
@@ -64,7 +62,6 @@ const MyProfilePage = () => {
           />
           <AddCatsToProfileForm profileId={profile.id} onUpdate={refreshPage} />
         </>
-
       ) : (
         <div className="create-profile-container">
           <h4>You have not created a profile yet</h4>
