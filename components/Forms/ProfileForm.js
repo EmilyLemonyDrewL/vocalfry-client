@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import { updateProfile, createProfile } from '../../api/userData';
-import { getCategories } from '../../api/categoryData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
@@ -20,13 +19,10 @@ const initialState = {
 
 const ProfileForm = ({ obj }) => {
   const [formInput, setFormInput] = useState(initialState);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategories, setSelectedCateogries] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
-    getCategories().then((categoryArray) => setCategories(categoryArray));
     if (obj && obj.id) {
       setFormInput({
         name_seen_on_profile: obj.name_seen_on_profile,
@@ -39,7 +35,6 @@ const ProfileForm = ({ obj }) => {
         email: obj.email,
         phone: obj.phone,
       });
-      setSelectedCateogries(obj.profile_categories.map((category) => category.id));
     }
   }, [obj]);
 
@@ -63,22 +58,11 @@ const ProfileForm = ({ obj }) => {
     }
   };
 
-  const handleCatChange = (e) => {
-    const { value, checked } = e.target;
-    const parsedValue = parseInt(value, 10);
-    if (checked) {
-      setSelectedCateogries([...selectedCategories, parsedValue]);
-    } else {
-      setSelectedCateogries(selectedCategories.filter((id) => id !== parsedValue));
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = {
       ...formInput,
       userId: user.uid,
-      categories: selectedCategories,
     };
     if (obj && obj.id) {
       updateProfile(payload, obj.id).then(() => router.push(`/Profile/${obj.id}`));
@@ -126,21 +110,6 @@ const ProfileForm = ({ obj }) => {
             required
           />
         </FloatingLabel>
-      </Form.Group>
-
-      <Form.Group className="mb-3">
-        <Form.Label>Select Categories</Form.Label>
-        {categories.map((category) => (
-          <Form.Check
-            key={category.id}
-            type="checkbox"
-            id={`category-${category.id}`}
-            label={category.label}
-            value={category.id}
-            checked={selectedCategories.includes(category.id)}
-            onChange={handleCatChange}
-          />
-        ))}
       </Form.Group>
 
       <Form.Group className="mb-3">
@@ -231,10 +200,6 @@ ProfileForm.propTypes = {
     demo_reel_url: PropTypes.string,
     email: PropTypes.string,
     phone: PropTypes.string,
-    profile_categories: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      label: PropTypes.string,
-    })),
   }),
 };
 

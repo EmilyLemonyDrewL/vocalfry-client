@@ -31,6 +31,30 @@ const getProfileByUser = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getProfileById = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/profiles/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const getProfilesByCategory = (categoryId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/profiles?category_id=${categoryId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const createProfile = (payload) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/profiles`, {
     method: 'POST',
@@ -57,5 +81,5 @@ const updateProfile = (payload, id) => new Promise((resolve, reject) => {
 });
 
 export {
-  getProfiles, getSingleProfile, getProfileByUser, createProfile, updateProfile,
+  getProfiles, getSingleProfile, getProfileByUser, getProfileById, createProfile, updateProfile, getProfilesByCategory,
 };
