@@ -14,11 +14,8 @@
   <ul>A way to list, edit and delete jobs</ul>
 </li>
 
-## Deployed project link
-<p>Coming soon...</p>
-
 ## Issue Tickets
-https://github.com/EmilyLemonyDrewL/vocalfry-server/issues
+https://github.com/EmilyLemonyDrewL/vocalfry-client/issues
 
 ## Contributor(s)
 https://github.com/EmilyLemonyDrewL
