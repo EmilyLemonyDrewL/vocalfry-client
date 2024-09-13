@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, ListGroup, Button } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 
 const FullProfileCard = ({
@@ -11,9 +11,11 @@ const FullProfileCard = ({
   location,
   email,
   phone,
-  categories,
   above18,
   workremote,
+  userId,
+  currentUser,
+  profileCategories = [],
 }) => {
   const router = useRouter();
 
@@ -37,21 +39,23 @@ const FullProfileCard = ({
         </Card.Text>
         <Card.Text>{above18 ? 'Yes' : 'No'}</Card.Text>
 
-        {categories && categories.length > 0 && (
-        <Card.Text>
-          <strong>Categories:</strong>
-          <ListGroup variant="flush">
-            {categories.map((category) => (
-              <ListGroup.Item key={category.id}>
-                {category.label}
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-        </Card.Text>
-        )}
+        <div style={{ marginTop: '20px' }}>
+          <h5>Profile Categories</h5>
+          {profileCategories.length > 0 ? (
+            <ul>
+              {profileCategories.map((category) => (
+                <li key={category.id}>{category.category.label}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>This user has not added any categories yet.</p>
+          )}
+        </div>
       </Card.Body>
 
-      <Button className="job-card-btn" onClick={() => router.push(`/Profile/edit/${id}`)}>Edit Profile</Button>
+      {userId === currentUser && (
+        <Button className="job-card-btn" onClick={() => router.push(`/Profile/edit/${id}`)}>Edit Profile</Button>
+      )}
     </Card>
   );
 };
@@ -63,12 +67,16 @@ FullProfileCard.propTypes = {
   location: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    label: PropTypes.string.isRequired,
-  })).isRequired,
   above18: PropTypes.bool.isRequired,
   workremote: PropTypes.bool.isRequired,
+  userId: PropTypes.number.isRequired,
+  currentUser: PropTypes.number.isRequired,
+  profileCategories: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    category: PropTypes.shape({
+      label: PropTypes.string.isRequired,
+    }).isRequired,
+  })).isRequired,
 };
 
 export default FullProfileCard;

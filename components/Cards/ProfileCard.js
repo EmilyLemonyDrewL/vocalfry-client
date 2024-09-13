@@ -1,40 +1,36 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card, ListGroup } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 
 const ProfileCard = ({
+  id,
   name,
   location,
   email,
-  categories,
-}) => (
-  <Card className="text-center" id="category-card">
-    <Card.Body>
-      <Card.Text>{name}</Card.Text>
-      <Card.Text>Location: {location}</Card.Text>
-      <Card.Text>Contact: {email}</Card.Text>
-      <Card.Text>
-        <strong>Categories:</strong>
-        <ListGroup variant="flush">
-          {categories.map((category) => (
-            <ListGroup.Item key={category.id}>
-              {category.label}
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
-      </Card.Text>
-    </Card.Body>
-  </Card>
-);
+}) => {
+  const router = useRouter();
 
+  const handleViewDetails = () => {
+    router.push(`/Profile/ProfilesByCategory/${id}`);
+  };
+
+  return (
+    <Card className="text-left" id="profile-card">
+      <Card.Body>
+        <Card.Text className="pro-name">{name}</Card.Text>
+        <Card.Text>Location: {location}</Card.Text>
+        <Card.Text>Contact: {email}</Card.Text>
+        <Button className="job-deets" onClick={handleViewDetails}>Details</Button>
+      </Card.Body>
+    </Card>
+  );
+};
 ProfileCard.propTypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    label: PropTypes.string.isRequired,
-  })).isRequired,
 };
 
 export default ProfileCard;

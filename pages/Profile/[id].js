@@ -4,18 +4,35 @@ import Button from 'react-bootstrap/Button';
 import { getProfileByUser } from '../../api/userData';
 import { useAuth } from '../../utils/context/authContext';
 import FullProfileCard from '../../components/Cards/FullProfileCard';
+import AddCatsToProfileForm from '../../components/Forms/AddCatsForm';
+import { getProfileCategories } from '../../api/categoryData';
 
 const MyProfilePage = () => {
   const [profile, setProfile] = useState(null);
+  const [profileCategories, setProfileCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { user } = useAuth();
 
   const showProfile = () => {
     if (user?.uid) {
       getProfileByUser(user.uid).then((data) => {
-        // Assuming 'data' is an array with a single profile object
-        setProfile(data[0]);
+        const profileData = data[0] || null;
+        setProfile(profileData);
+
+        if (profileData?.id) {
+          getProfileCategories(profileData.id).then((categories) => {
+            setProfileCategories(categories);
+          });
+        }
+        setLoading(false);
       });
+    }
+  };
+
+  const refreshPage = () => {
+    if (profile?.id) {
+      getProfileCategories(profile.id).then(setProfileCategories);
     }
   };
 
@@ -23,25 +40,31 @@ const MyProfilePage = () => {
     showProfile();
   }, [user]);
 
-  if (!profile) {
+  if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <div className="profile-container" style={{ marginTop: '40px' }}>
       {profile ? (
-        <FullProfileCard
-          id={profile.id}
-          name={profile.name_seen_on_profile}
-          bio={profile.bio}
-          image={profile.image_url}
-          location={profile.location}
-          email={profile.email}
-          phone={profile.phone}
-          workremote={profile.work_remote}
-          above18={profile.above_18}
-          categories={profile.profile_categories}
-        />
+        <>
+          <FullProfileCard
+            id={profile.id}
+            name={profile.name_seen_on_profile}
+            bio={profile.bio}
+            image={profile.image_url}
+            location={profile.location}
+            email={profile.email}
+            phone={profile.phone}
+            workremote={profile.work_remote}
+            above18={profile.above_18}
+            userId={profile.user.id}
+            currentUser={user.id}
+            profileCategories={profileCategories}
+          />
+          <AddCatsToProfileForm profileId={profile.id} onUpdate={refreshPage} />
+        </>
+
       ) : (
         <div className="create-profile-container">
           <h4>You have not created a profile yet</h4>
