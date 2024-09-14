@@ -45,10 +45,10 @@ const JobListingForm = ({ obj }) => {
     };
     if (obj && obj.id) {
       updateJob(payload, obj.id)
-        .then(() => router.push('/Jobs/JobListings'));
+        .then(() => router.push('/Jobs/MyJobs'));
     } else {
       createJob(payload)
-        .then(() => router.push('/Jobs/JobListings'));
+        .then(() => router.push('/Jobs/MyJobs'));
     }
   };
 
