@@ -21,9 +21,12 @@ https://github.com/EmilyLemonyDrewL/vocalfry-server
 ## Issue Tickets
 https://github.com/EmilyLemonyDrewL/vocalfry-client/issues
 
+## Project Board
+https://github.com/users/EmilyLemonyDrewL/projects/5
+
 ## Contributor(s)
 https://github.com/EmilyLemonyDrewL
 
 ## Loom Video
-Coming Soon!
+(https://www.loom.com/share/977735b23a9040ef890fc1070a6751f2?sid=0c2c74ec-f23b-419b-96d6-6574dd082e4b)
 
