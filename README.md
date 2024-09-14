@@ -3,6 +3,7 @@
 <p>Vocal Fry is an application tailored for voice actors and voice-over artists to discover job opportunities, while providing hiring companies with a platform to find the ideal voice talent for their projects.</p>
 
 ## Features (FE)
+
 <li>
   <ul>Google Authentication using Firebase</ul>
   <ul>A user-specific landing page</ul>
