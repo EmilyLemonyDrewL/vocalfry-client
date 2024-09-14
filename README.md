@@ -3,8 +3,6 @@
 <p>Vocal Fry is an application tailored for voice actors and voice-over artists to discover job opportunities, while providing hiring companies with a platform to find the ideal voice talent for their projects.</p>
 
 ## Features (FE)
-
-<li>
   <ul>Google Authentication using Firebase</ul>
   <ul>A user-specific landing page</ul>
   <ul>A way for all users to search for VOA-type users by category</ul>
@@ -12,8 +10,10 @@
   <ul>A customizable profile page</ul>
   <ul>A way to view job listings</ul>
   <p>For hiring-company-type users:</p>
-  <ul>A way to list, edit and delete jobs</ul>
-</li>
+  <ul>A way to create, edit and delete job listings</ul>
+
+## Tech Used
+React, Next.js, Firebase Google Authentication, Python, Django
 
 ## Issue Tickets
 https://github.com/EmilyLemonyDrewL/vocalfry-client/issues
