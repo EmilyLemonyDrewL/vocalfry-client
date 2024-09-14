@@ -15,6 +15,9 @@
 ## Tech Used
 React, Next.js, Firebase Google Authentication, Python, Django
 
+## Back End Repo
+https://github.com/EmilyLemonyDrewL/vocalfry-server
+
 ## Issue Tickets
 https://github.com/EmilyLemonyDrewL/vocalfry-client/issues
 
