@@ -38,6 +38,7 @@ const ProfileDetailPage = () => {
           bio={profile.bio}
           image={profile.image_url}
           location={profile.location}
+          demoReel={profile.demo_reel_url}
           email={profile.email}
           phone={profile.phone}
           workremote={profile.work_remote}

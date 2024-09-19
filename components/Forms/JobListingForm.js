@@ -101,7 +101,7 @@ const JobListingForm = ({ obj }) => {
 
         <Form.Group className="mb-3">
           <FloatingLabel controlId="floatingInput3" label="Company Website" className="mb-3">
-            <p className="form-notes">Provide a link to the application or company website</p>
+            <p className="form-notes">Provide a link to the application or company website. The link MUST START WITH http:// or https:// in order for it to work.</p>
             <Form.Control
               type="text"
               placeholder="url"

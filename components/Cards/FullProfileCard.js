@@ -9,6 +9,7 @@ const FullProfileCard = ({
   bio,
   image,
   location,
+  demoReel,
   email,
   phone,
   above18,
@@ -30,6 +31,7 @@ const FullProfileCard = ({
         <Card.Text className="pro-stuff">About me: {bio}</Card.Text>
         <Card.Text className="pro-stuff">Location: {location}</Card.Text>
         <Card.Text className="pro-stuff">Contact: {email}, {phone}</Card.Text>
+        <a className="company-link" href={demoReel} target="_blank" rel="noopener noreferrer"> Link to demo reel: {demoReel} </a>
         <Card.Text>
           Can you work remote? Do you have a home studio?
         </Card.Text>
@@ -65,6 +67,7 @@ FullProfileCard.propTypes = {
   bio: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
+  demoReel: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
   above18: PropTypes.bool.isRequired,
