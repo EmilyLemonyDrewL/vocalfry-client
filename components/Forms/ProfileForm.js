@@ -75,6 +75,7 @@ const ProfileForm = ({ obj }) => {
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3">
         <FloatingLabel controlId="FloatingInput1" label="Name seen on profile" className="mb-3">
+          <p className="form-notes">This can be your stage/professional name. Whatever you want other users to see.</p>
           <Form.Control
             type="text"
             placeholder="Name"
@@ -114,6 +115,7 @@ const ProfileForm = ({ obj }) => {
 
       <Form.Group className="mb-3">
         <FloatingLabel controlId="FloatingInput4" label="Location" className="mb-3">
+          <p className="form-notes">Be as descriptive as possible. If you are willing to work from anywhere, if you can only work from your home studio, etc...</p>
           <Form.Control
             type="text"
             placeholder="Location"
@@ -147,6 +149,7 @@ const ProfileForm = ({ obj }) => {
 
       <Form.Group className="mb-3">
         <FloatingLabel controlId="FloatingInput5" label="Demo Reel URL" className="mb-3">
+          <p className="form-notes">Provide a link to your demo reel. The link MUST START WITH http:// or https:// in order for it to work. </p>
           <Form.Control
             type="text"
             placeholder="add your demo reel url"

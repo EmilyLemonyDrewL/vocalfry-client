@@ -11,7 +11,6 @@ const AddCatsToProfileForm = ({ profileId, onUpdate }) => {
   const [profileCategories, setProfileCategories] = useState([]);
 
   useEffect(() => {
-    // Fetch categories and profile categories on component mount
     getCategories()
       .then(setCategories)
       .catch((error) => console.error('Error fetching categories:', error));
@@ -27,17 +26,17 @@ const AddCatsToProfileForm = ({ profileId, onUpdate }) => {
     const isSelected = isCategorySelected(categoryId);
     if (isSelected) {
       const profileCat = profileCategories.find((pc) => pc.category.id === categoryId);
-      deleteProfileCat(profileCat.id) // Make sure profileCat.id is correct
+      deleteProfileCat(profileCat.id)
         .then(() => {
           setProfileCategories((prev) => prev.filter((pc) => pc.id !== profileCat.id));
-          onUpdate(); // Call the onUpdate callback to refresh the profile categories
+          onUpdate();
         })
         .catch((error) => console.error('Error deleting category:', error));
     } else {
       createProfileCat(profileId, categoryId)
         .then((newProfileCategory) => {
           setProfileCategories((prev) => [...prev, newProfileCategory]);
-          onUpdate(); // Call the onUpdate callback to refresh the profile categories
+          onUpdate();
         })
         .catch((error) => console.error('Error creating category:', error));
     }
